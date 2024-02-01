@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <title>DoggYears</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 10px auto 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        position: relative;
+    }
+    h1 {margin-bottom: 10px;}
+    input {margin-bottom: 10px;}
+
+    .bottom-left-text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin: 35px;
+        font-size:20px
+    }
+    
+    </style>
+</head>
+<body>
+
+<h1>Dog age to Human age converter</h1>
+
+<input id="dogAge" type="number" />
+
+<button onclick="
+ageConverter();
+">Convert</button>
+
+<p id="result"></p>
+
+<p  class="bottom-left-text">
+    The formula to calculate and convert dog age to human age is quite simple.
+    The first year of a dog's life is roughly the same as 15 human years.
+    The second year of a dog's life is equal to about 9 human years, and then the following years equal to about 4 or 5 human years.
+</p>
+
+<script>
+ function dogAgeToHumanAge(dogAge) {
+    if (dogAge === 1) {
+        return 15;
+    } else if (dogAge === 2) {
+        return 24;
+    } else {
+        return 24 + (dogAge - 2)
+    }
+ }
+ 
+ function ageConverter() {
+    const dogAgeInput = document.getElementById("dogAge");
+    const resultElement = document.getElementById("result");
+    const dogAge = parseFloat(dogAgeInput.value);
+
+    if (!isNaN(dogAge) && dogAge >= 0) {
+                const humanAge = dogAgeToHumanAge(dogAge);
+                resultElement.textContent = `A ${dogAge}-year-old dog is the approximate equivalent to a ${humanAge}-year-old human.`;
+            } else {
+                resultElement.textContent = "Please enter a valid dog age.";
+            }
+ }
+
+</script>
+</body>
+</html>
