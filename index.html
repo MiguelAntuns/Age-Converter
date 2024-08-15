@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="google-site-verification" content="aSN6pKETlZqbp0ICyituqtzIFC1RkwdDnSuwf0ip5yo" />
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale="1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DoggYears</title>
     <style>
         body {
@@ -23,27 +22,29 @@
     h1 {margin-bottom: 10px;}
     input {margin-bottom: 10px;
         width: 150px;
+        padding: 5px;
     }
 
     button{
         display: inline-block;
-        margin-top: -9px;
+        margin-top: -10px;
         margin-left: 10px;
-        padding: 0px 10px;
+        padding: 5px 10px;
     }
 
     .bottom-left-text {
         position: absolute;
-        bottom: 0;
+        bottom: -10px;
         left: 0;
-        margin: 35px;
+        margin: 30px;
         font-size:20px;
     }
 
     .input-container{
         display: flex;
         align-items: center;
-        margin-bottom: 50px;
+        margin-top: 10px;
+        margin-bottom: 5px;
     }
 
     footer{
@@ -54,6 +55,16 @@
         padding-top: 0px;
     }
 
+    #result {
+        font-size: 20px;
+        margin-top: 40px;
+        margin-bottom: 300px;
+    }
+
+    img {
+        width: 550px;
+        margin-top: 200px;
+    }
     </style>
 </head>
 <body>
@@ -78,10 +89,13 @@
 <p id="result"></p>
 
 <p  class="bottom-left-text">
-    The formula to calculate and convert dog age to human age is quite simple.
+    The formula to <a href="https://www.akc.org/expert-advice/health/how-to-calculate-dog-years-to-human-years/" target="_blank">calculate</a> and convert dog age to human age is quite simple.
     The first year of a dog's life is roughly the equivalent to 15 human years.
-    The second year of a dog's life is equal to about 9 human years, and then the following years equal to about 4 or 5 human years.
+    The second year of a dog's life is equal to about 9 human years, and then the following years equal to about 4 or 5 human years. The formula can differentiate depending on the dogs size.
+    Read article above.
 </p>
+
+<!-- aspeto visual do website (botões, texto, imagem, input box, referral, etc) -->
 
 <script>
  function dogAgeToHumanAge(dogAge) {
@@ -90,23 +104,26 @@
     } else if (dogAge === 2) {
         return 24;
     } else {
-        return 24 + (dogAge - 2)
+        return 24 + (dogAge - 2) * 4;
     }
  }
  
- function ageConverter() {
-    const dogAgeInput = document.getElementById("dogAge");
-    const resultElement = document.getElementById("result");
-    const dogAge = parseFloat(dogAgeInput.value);
+/* if statement para devolver 15 ou 24 anos humanos se a idade de cão for 1 ou 2 anos respetivamente
+caso seja maior que 2, a function irá retirar 2 anos humanos (que predeterminadamente equivalem a 24) à idade e multiplicar
+por 4 anos que é, aproximadamente, o quanto se deve somar por cada ano adicional, depois de passar os dois anos de idade */
 
-    if (!isNaN(dogAge) && dogAge >= 0) {
-                const humanAge = dogAgeToHumanAge(dogAge);
-                resultElement.textContent = `A ${dogAge}-year-old dog is the approximate equivalent to a ${humanAge}-year-old human.`;
+ function ageConverter() {
+    const dogAgeInput = document.getElementById("dogAge");  // variavel "chama" o elemento de input da idade do cão
+    const resultElement = document.getElementById("result"); // providencia o resultado
+    const dogAge = parseFloat(dogAgeInput.value); // transforma o input do usuário em forma de string (texto) para um número decimal e armazena-o na variavél dogAge
+
+    if (!isNaN(dogAge) && dogAge >= 0) { // verifica se a idade introduzida é válida
+                const humanAge = dogAgeToHumanAge(dogAge); // chama a function para converter a idade de cão para idade humana
+                resultElement.textContent = `A ${dogAge}-year-old dog is the approximate equivalent to a ${humanAge}-year-old human.`; // define o texto do elemento do resultado
             } else {
-                resultElement.textContent = "Please enter a valid dog age.";
+                resultElement.textContent = "Please enter a valid dog age."; // se for inválido, apresentar o seguinte texto
             }
  }
-
 </script>
 </body>
 </html>
